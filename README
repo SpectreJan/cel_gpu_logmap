@@ -1,0 +1,43 @@
+#
+# Copyright 2001-2007,2009,2012 Free Software Foundation, Inc.
+#
+# This file is part of CEL GPU Log-MAP Decoder
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Lesser General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Lesser General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+CEL GPU LOG MAP DECODER README 
+
+The GPU Log MAP Decoder is a first approach to speed up the log-Map algorithm
+for a 8 state convolutional code derived from the LTE turbocode. It is implemented
+in C and OpenCL. 
+
+The software is divided in two parts. The C implementation that generates a random
+signal, initializes the OpenCL Framework, copies databuffers to the GPU and starts
+the OpenCL kernels on the GPU. The sourcecode is found in decoder.c and decoder.h
+DecoderConfig.h has all relevant constant definition, e.g. packet length and coderate.
+
+The second part are the OpenCL Kernels that implement the decoder algorithm on the
+GPU. 
+
+This Version was tested with the NVIDIA CUDA 5.5 SDK and NVIDIA driver 319.76 for 
+linux. An OpenCL installation is necessary to compile and run the "CEL GPU Log-MAP Decoder".
+
+usage is 
+opendecoder [number of runs]
+
+The CEL GPU Log-MAP Decoder then will generate a random vector of LLRs, decode 
+the frame. The time to copy the LLRs to the GPU, decoding them and copying them back
+will be measured. A mean value will be calculated over the number of runs to 
+compensate for non-realtime behavior of the operating system.   
+
