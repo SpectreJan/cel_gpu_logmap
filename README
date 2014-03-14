@@ -30,11 +30,18 @@ DecoderConfig.h has all relevant constant definition, e.g. packet length and cod
 The second part are the OpenCL Kernels that implement the decoder algorithm on the
 GPU. 
 
-This Version was tested with the NVIDIA CUDA 5.5 SDK and NVIDIA driver 319.76 for 
-linux. An OpenCL installation is necessary to compile and run the "CEL GPU Log-MAP Decoder".
+This Version was tested with the NVIDIA CUDA 5.5 SDK and NVIDIA driver 319.76 on
+Crunchbang and Xubuntu 12.04. 
+An OpenCL installation is necessary to compile and run the "CEL GPU Log-MAP Decoder".
+
+Build the program:
+
+make openDecoder
+
+There is also a "make clean" that gets rid of the compile output of previous builds.
 
 usage is 
-opendecoder [number of runs]
+openDecoder [number of runs]
 
 The CEL GPU Log-MAP Decoder then will generate a random vector of LLRs, decode 
 the frame. The time to copy the LLRs to the GPU, decoding them and copying them back
